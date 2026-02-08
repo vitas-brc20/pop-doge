@@ -1,22 +1,15 @@
 import { NextResponse } from 'next/server';
 
 export function middleware(request) {
-  const country = request.geo?.country || 'US'; // Default to US if not available
+  // Vercel이 제공하는 geo 객체의 내용을 직접 로깅합니다.
+  console.log("Vercel Geo Data:", request.geo);
 
-  // Clone the request headers and set a new header `x-country-code`
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set('x-country-code', country);
-
-  // You can also set a cookie if needed, but a header is often sufficient for server components or initial props
-  const response = NextResponse.next({
-    request: {
-      headers: requestHeaders,
-    },
-  });
-  response.cookies.set('country-code', country); // Set a cookie for client-side access
+  const country = request.geo?.country || 'US'; 
+  const response = NextResponse.next();
+  response.cookies.set('country-code', country);
   return response;
 }
 
 export const config = {
-  matcher: '/', // Apply middleware to all routes
+  matcher: '/',
 };
