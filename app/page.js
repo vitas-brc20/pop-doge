@@ -13,7 +13,23 @@ export default function Home() {
   const [countryCode, setCountryCode] = useState('US'); // Default country code
 
   useEffect(() => {
-    // Read country code from cookie set by middleware
+    // This effect runs once on component mount
+
+    // 1. Wake up the Edge Function listener
+    const wakeUpListener = async () => {
+      console.log('Sending wake-up call to Edge Function listener...');
+      const { error } = await supabase.functions.invoke('process-doge-clicks', {
+        body: { action: 'wake-up' }
+      });
+      if (error) {
+        console.error('Error waking up listener:', error.message);
+      } else {
+        console.log('Listener wake-up call sent successfully.');
+      }
+    };
+    wakeUpListener();
+
+    // 2. Read country code from cookie set by middleware
     const getCookie = (name) => {
       const value = `; ${document.cookie}`;
       const parts = value.split(`; ${name}=`);
@@ -23,7 +39,7 @@ export default function Home() {
     if (code) {
       setCountryCode(code);
     }
-  }, []);
+  }, []); // Empty dependency array ensures this runs only once
 
   const handleClick = async () => {
     setClicks(clicks + 1);
