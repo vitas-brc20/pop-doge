@@ -86,13 +86,14 @@ export default function Home() {
         <p className="text-2xl mb-8 text-gray-700">Clicks: {clicks}</p>
         <div
           onClick={handleClick}
-          className="cursor-pointer active:scale-95 transition-transform duration-75 ease-out"
+          className="w-full max-w-md cursor-pointer active:scale-95 transition-transform duration-75 ease-out"
         >
           <Image
             src={isMouthOpen ? "/opened.png" : "/closed.png"}
             alt="Doge"
-            width={200}
-            height={200}
+            width={500}
+            height={500}
+            className="w-full h-auto"
             priority
           />
         </div>
