@@ -26,8 +26,8 @@ export default function Home() {
     console.log(`Sending batch of ${clicksToSend} clicks for ${countryCode}`);
 
     const { error } = await supabase.rpc('increment_country_clicks', {
-      target_country_id: countryCode,
-      amount: clicksToSend,
+      country_id: countryCode,
+      increment_by: clicksToSend,
     });
 
     if (error) {
