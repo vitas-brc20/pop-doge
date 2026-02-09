@@ -89,7 +89,7 @@ export default function Home() {
           className="cursor-pointer active:scale-95 transition-transform duration-75 ease-out"
         >
           <Image
-            src={isMouthOpen ? "/open-doge.svg" : "/closed-doge.svg"}
+            src={isMouthOpen ? "/opened.png" : "/closed.png"}
             alt="Doge"
             width={200}
             height={200}
