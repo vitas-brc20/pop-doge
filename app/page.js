@@ -6,6 +6,7 @@ import { supabase } from '../lib/supabase';
 import Leaderboard from '../components/Leaderboard';
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import PaypalBoost from "../components/PaypalBoost";
+import KcpBoost from "../components/KcpBoost";
 
 export default function Home() {
   const [clicks, setClicks] = useState(0); // Visual click counter for the user
@@ -97,8 +98,12 @@ export default function Home() {
             priority
           />
         </div>
-        <div className="mt-8">
-          <PaypalBoost countryCode={countryCode} />
+        <div className="mt-8 w-full max-w-md">
+          {countryCode === 'KR' ? (
+            <KcpBoost />
+          ) : (
+            <PaypalBoost countryCode={countryCode} />
+          )}
         </div>
         <Leaderboard />
       </div>

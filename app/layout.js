@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -23,6 +24,8 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <Script src="https://shop-api.e-ncp.com/payments/ncp_pay.js" strategy="beforeInteractive" />
+        <Script src="https://spay.kcp.co.kr/plugin/kcp_spay_hub.js" strategy="beforeInteractive" />
       </body>
     </html>
   );
