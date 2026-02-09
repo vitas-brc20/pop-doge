@@ -30,6 +30,7 @@ export default function KcpBoost() {
     });
 
     const orderData = {
+      pgType: 'KCP',
       orderSheetNo: `POPDOGE-${new Date().getTime()}`, // Unique order number
       orderName: 'Popdoge 1,000 Points Boost',
       amount: orderAmount,
